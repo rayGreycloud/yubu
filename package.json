@@ -4,7 +4,7 @@
   "description": "uber-clone",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon --exec \"mocha -c --recursive\""
+    "test": "set NODE_ENV=test&& nodemon --exec \"mocha -c --recursive\""
   },
   "author": "rayGreycloud",
   "license": "ISC",
