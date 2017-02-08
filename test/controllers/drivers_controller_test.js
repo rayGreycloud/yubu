@@ -14,8 +14,27 @@ describe('POST /api/drivers', () => {
         .end(() => {
           Driver.count().then(newCount => {
             assert(count + 1 === newCount);
+            done();
           });
-          done();
+        });
+    });
+  });
+});
+
+describe('PUT /api/drivers/:id', () => {
+  it('should update a driver record', (done) => {
+    const driver = new Driver({ email: 'vik@test.com', driving: false });
+
+    driver.save().then(() => {
+      request(app)
+        .put(`/api/drivers/${driver._id}`)
+        .send({ driving: true })
+        .end(() => {
+          Driver.findOne({ email: 'vik@test.com' })
+            .then(driver => {
+              assert(driver.driving === true);
+              done();
+            });
         });
     });
   });
