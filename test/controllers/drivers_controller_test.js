@@ -39,3 +39,21 @@ describe('PUT /api/drivers/:id', () => {
     });
   });
 });
+
+describe('DELETE /api/drivers/:id', () => {
+  it('should delete a driver record', (done) => {
+    const driver = new Driver({ email: 'wizz@test.com' });
+
+    driver.save().then(() => {
+      request(app)
+        .delete(`/api/drivers/${driver._id}`)
+        .end(() => {
+          Driver.findOne({ email: 'wizz@test.com' })
+            .then((driver) => {
+              assert(driver === null);
+              done();
+            });
+        });
+    });
+  });
+});
