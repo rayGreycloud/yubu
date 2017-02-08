@@ -57,3 +57,30 @@ describe('DELETE /api/drivers/:id', () => {
     });
   });
 });
+
+describe('GET /api/drivers', () => {
+  it('should find drivers near location', (done) => {
+    const driverA = new Driver({
+      email: 'driverA@test.com',
+      // Location = Portland
+      geometry: { type: 'Point', coordinates: [-122.636, 45.562] }
+    });
+
+    const driverB = new Driver({
+      email: 'driverB@test.com',
+      // Location = Miami
+      geometry: { type: 'Point', coordinates: [-80.239, 25.73] }
+    });
+
+    Promise.all([ driverA.save(), driverB.save()])
+      .then(() => {
+        request(app)
+        // Using Portland location for test
+          .get(`/api/drivers?lng=-122&lat=45`)
+          .end((err, response) => {
+            console.log(response);
+            done();
+          });
+      });
+  });
+});
