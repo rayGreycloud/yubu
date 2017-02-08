@@ -4,13 +4,14 @@
   "description": "uber-clone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon --exec \"mocha -c --recursive\""
   },
   "author": "rayGreycloud",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.1",
     "mocha": "^3.2.0",
-    "mongoose": "^4.8.1"
+    "mongoose": "^4.8.1",
+    "supertest": "^3.0.0"
   }
 }
