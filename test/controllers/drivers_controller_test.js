@@ -78,7 +78,8 @@ describe('GET /api/drivers', () => {
         // Using Portland location for test
           .get(`/api/drivers?lng=-122&lat=45`)
           .end((err, response) => {
-            console.log(response);
+            assert(response.body.length === 1);
+            assert(response.body[0].obj.email === 'driverA@test.com');
             done();
           });
       });
