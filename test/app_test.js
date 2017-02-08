@@ -3,7 +3,7 @@ const request = require('supertest');
 const app = require('../app');
 
 describe('Express app', () => {
-  it('should handle GET /api request', (done) => {
+  it('should handle route request', (done) => {
     request(app)
       .get('/api')
       .end((err, response) => {
